@@ -90,7 +90,6 @@ filters.forEach(filter => filter.addEventListener("click", function () {
     var tag = filter.getAttribute("data-images-toggle");
 
     galleryItems.forEach(function(galleryItem) {
-        
         const parent = galleryItem.parentNode;
         parent.style.display = 'none';
         if (tag === "all") {

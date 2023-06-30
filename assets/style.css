@@ -73,7 +73,6 @@ body {
 
 .picture img {
 	width: 100%;
-	height: 100%;
 }
 #about-me {
 	flex: 2
@@ -315,9 +314,9 @@ input[type="submit"] {
 		margin-top: 1em;
 	}
 	.picture.right::before {
+		position: absolute;
 		width: 100%;
 		height: 30%;
-		position: absolute;
 		bottom: 0;
 		right: 0;
 		z-index: -1;
