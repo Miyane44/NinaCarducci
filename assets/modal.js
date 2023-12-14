@@ -7,6 +7,8 @@ galleryItems.forEach(galleryItem => galleryItem.addEventListener("click", openMo
 
 var tagsCollection = [];
 
+let activeTag = "all";
+
 const options = {
     columns: {
         xs: 1,
@@ -206,14 +208,25 @@ const previous = document.querySelectorAll('.mg-prev');
 previous.forEach(previousButton => previousButton.addEventListener('click', function() {
     let imagesCollection = [];
 
-    galleryItems.forEach(galleryItem => imagesCollection.push(galleryItem.src));
+    let activeFilter = document.querySelector(".active-tag");
+    let activeTag = activeFilter.getAttribute("data-images-toggle");
 
+    if (activeTag === "all") {
+        galleryItems.forEach(galleryItem => imagesCollection.push(galleryItem.src));
+    } else {
+        galleryItems.forEach(function(galleryItem) {
+            if (galleryItem.getAttribute("data-gallery-tag") === activeTag) {
+                imagesCollection.push(galleryItem.src);
+            }
+        });
+    } 
+    
     const imageActiveSrc = document.querySelector(".lightboxImage").getAttribute('src');
-
+    
     const index = imagesCollection.indexOf(imageActiveSrc);
-
+    
     const previousImage = imagesCollection[index - 1] || imagesCollection[imagesCollection.length - 1];
-
+    
     const image = document.querySelector(".lightboxImage");
     image.src = previousImage;
 }));
@@ -221,8 +234,19 @@ previous.forEach(previousButton => previousButton.addEventListener('click', func
 const next = document.querySelectorAll('.mg-next');
 next.forEach(nextButton => nextButton.addEventListener('click', function() {
     let imagesCollection = [];
+
+    let activeFilter = document.querySelector(".active-tag");
+    let activeTag = activeFilter.getAttribute("data-images-toggle");
     
-    galleryItems.forEach(galleryItem => imagesCollection.push(galleryItem.src));
+    if (activeTag === "all") {
+        galleryItems.forEach(galleryItem => imagesCollection.push(galleryItem.src));
+    } else {
+        galleryItems.forEach(function(galleryItem) {
+            if (galleryItem.getAttribute("data-gallery-tag") === activeTag) {
+                imagesCollection.push(galleryItem.src);
+            }
+        });
+    } 
 
     const imageActiveSrc = document.querySelector(".lightboxImage").getAttribute('src');
 
